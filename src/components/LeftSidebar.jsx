@@ -42,36 +42,47 @@ export default function LeftSidebar() {
       </div>
 
       <div className="mt-auto">
-        {/* Hire Me Card */}
+        {/* Hire Me Card with animated border */}
         <motion.div
-          initial={{ y: 12, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/60 p-4"
+          className="rounded-2xl p-[2px]"
+          style={{
+            backgroundImage:
+              'linear-gradient(90deg, rgba(59,130,246,0.9), rgba(34,211,238,0.9), rgba(59,130,246,0.9))',
+            backgroundSize: '200% 200%'
+          }}
+          animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.25),transparent_45%)]" />
           <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative z-10"
+            initial={{ y: 12, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/60 p-4"
           >
-            <p className="text-xs text-blue-300/80">Available for freelance</p>
-            <h3 className="text-white font-semibold mt-1">Need a developer?</h3>
-            <p className="text-sm text-slate-300/80 mt-2">I build polished, performant web apps with delightful UX.</p>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              className="mt-3 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-semibold py-2"
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.25),transparent_45%)]" />
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative z-10"
             >
-              <Sparkles className="w-4 h-4" /> Hire me
-            </motion.button>
+              <p className="text-xs text-blue-300/80">Available for freelance</p>
+              <h3 className="text-white font-semibold mt-1">Need a developer?</h3>
+              <p className="text-sm text-slate-300/80 mt-2">I build polished, performant web apps with delightful UX.</p>
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="mt-3 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-semibold py-2"
+              >
+                <Sparkles className="w-4 h-4" /> Hire me
+              </motion.button>
+            </motion.div>
+            <motion.div
+              aria-hidden
+              className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-blue-500/20 blur-2xl"
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            />
           </motion.div>
-          <motion.div
-            aria-hidden
-            className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-blue-500/20 blur-2xl"
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          />
         </motion.div>
       </div>
     </div>
