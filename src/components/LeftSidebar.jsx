@@ -42,29 +42,46 @@ export default function LeftSidebar() {
       </div>
 
       <div className="mt-auto">
-        {/* Hire Me Card with animated border */}
+        {/* Hire Me Card with border-only animation */}
         <motion.div
-          className="rounded-2xl p-[2px]"
+          className="relative rounded-2xl p-[2px]"
           style={{
             backgroundImage:
               'linear-gradient(90deg, rgba(59,130,246,0.9), rgba(34,211,238,0.9), rgba(59,130,246,0.9))',
             backgroundSize: '200% 200%'
           }}
-          animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+          animate={{
+            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+            boxShadow: [
+              '0 0 0px rgba(59,130,246,0.0), 0 0 0px rgba(34,211,238,0.0)',
+              '0 0 14px rgba(59,130,246,0.35), 0 0 8px rgba(34,211,238,0.25)',
+              '0 0 0px rgba(59,130,246,0.0), 0 0 0px rgba(34,211,238,0.0)'
+            ]
+          }}
           transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
         >
+          {/* "Electric" conic sweep strictly on the border via mask */}
           <motion.div
-            initial={{ y: 12, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/60 p-4"
-          >
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-2xl"
+            style={{
+              background:
+                'conic-gradient(from 0deg, rgba(59,130,246,0.0), rgba(59,130,246,0.0) 35%, rgba(59,130,246,0.6) 40%, rgba(34,211,238,0.7) 50%, rgba(59,130,246,0.6) 60%, rgba(59,130,246,0.0) 65%, rgba(59,130,246,0.0))',
+              WebkitMask:
+                'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+              WebkitMaskComposite: 'xor',
+              maskComposite: 'exclude',
+              padding: '2px',
+              filter: 'blur(2px)'
+            }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+          />
+
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/60 p-4">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.25),transparent_45%)]" />
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative z-10"
-            >
+            {/* Static content; no vertical bobbing */}
+            <div className="relative z-10">
               <p className="text-xs text-blue-300/80">Available for freelance</p>
               <h3 className="text-white font-semibold mt-1">Need a developer?</h3>
               <p className="text-sm text-slate-300/80 mt-2">I build polished, performant web apps with delightful UX.</p>
@@ -75,14 +92,8 @@ export default function LeftSidebar() {
               >
                 <Sparkles className="w-4 h-4" /> Hire me
               </motion.button>
-            </motion.div>
-            <motion.div
-              aria-hidden
-              className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-blue-500/20 blur-2xl"
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          </motion.div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>

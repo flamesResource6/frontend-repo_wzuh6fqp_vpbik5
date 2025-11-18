@@ -46,18 +46,43 @@ function App() {
         </div>
       </div>
 
-      {/* Mobile bottom hire card with animated border */}
+      {/* Mobile bottom hire card with border-only animation (no content motion) */}
       <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50">
         <motion.div
-          className="rounded-2xl p-[2px]"
+          className="relative rounded-2xl p-[2px]"
           style={{
             backgroundImage:
               'linear-gradient(90deg, rgba(59,130,246,0.9), rgba(34,211,238,0.9), rgba(59,130,246,0.9))',
             backgroundSize: '200% 200%'
           }}
-          animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+          animate={{
+            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+            boxShadow: [
+              '0 0 0px rgba(59,130,246,0.0), 0 0 0px rgba(34,211,238,0.0)',
+              '0 0 12px rgba(59,130,246,0.35), 0 0 8px rgba(34,211,238,0.25)',
+              '0 0 0px rgba(59,130,246,0.0), 0 0 0px rgba(34,211,238,0.0)'
+            ]
+          }}
           transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
         >
+          {/* Conic glare/electric sweep constrained to border */}
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-2xl"
+            style={{
+              background:
+                'conic-gradient(from 0deg, rgba(59,130,246,0.0), rgba(59,130,246,0.0) 35%, rgba(59,130,246,0.6) 40%, rgba(34,211,238,0.7) 50%, rgba(59,130,246,0.6) 60%, rgba(59,130,246,0.0) 65%, rgba(59,130,246,0.0))',
+              WebkitMask:
+                'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+              WebkitMaskComposite: 'xor',
+              maskComposite: 'exclude',
+              padding: '2px',
+              filter: 'blur(2px)'
+            }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+          />
+
           <div className="bg-slate-900/80 backdrop-blur border border-slate-700/60 rounded-2xl p-4">
             <div className="flex items-center justify-between">
               <div>
