@@ -1,68 +1,57 @@
+import React from 'react'
+import { motion } from 'framer-motion'
+import LeftSidebar from './components/LeftSidebar'
+import RightSidebar from './components/RightSidebar'
+import HeroSpline from './components/HeroSpline'
+import FeaturedSlider from './components/FeaturedSlider'
+import SkillsCarousel from './components/SkillsCarousel'
+import BentoCards from './components/BentoCards'
+
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]"></div>
+    <div className="min-h-screen bg-slate-950 text-slate-200">
+      {/* Background accents */}
+      <div className="pointer-events-none fixed inset-0">
+        <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full" />
+        <div className="absolute -bottom-10 -right-10 w-96 h-96 bg-cyan-500/10 blur-3xl rounded-full" />
+      </div>
 
-      <div className="relative min-h-screen flex items-center justify-center p-8">
-        <div className="max-w-2xl w-full">
-          {/* Header with Flames icon */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center mb-6">
-              <img
-                src="/flame-icon.svg"
-                alt="Flames"
-                className="w-24 h-24 drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]"
-              />
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[260px,1fr,300px] gap-4 p-4 md:p-6">
+        {/* Left Sidebar */}
+        <aside className="order-2 lg:order-1 bg-slate-900/60 backdrop-blur border border-slate-700/60 rounded-2xl p-4 sticky top-4 h-[calc(100vh-2rem)] hidden lg:block">
+          <LeftSidebar />
+        </aside>
+
+        {/* Center */}
+        <main className="order-1 lg:order-2 space-y-4">
+          {/* Hero with Spline */}
+          <HeroSpline />
+
+          {/* Featured slider */}
+          <FeaturedSlider />
+
+          {/* Skills carousel */}
+          <SkillsCarousel />
+
+          {/* Bento lists: snippets + posts */}
+          <BentoCards />
+        </main>
+
+        {/* Right Sidebar */}
+        <aside className="order-3 bg-slate-900/60 backdrop-blur border border-slate-700/60 rounded-2xl p-4 sticky top-4 h-[calc(100vh-2rem)] hidden lg:block">
+          <RightSidebar />
+        </aside>
+      </div>
+
+      {/* Mobile bottom hire card */}
+      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50">
+        <div className="bg-slate-900/80 backdrop-blur border border-slate-700/60 rounded-2xl p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-xs text-blue-300/80">Available for freelance</p>
+              <h3 className="text-white font-semibold">Need a developer?</h3>
             </div>
-
-            <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
-              Flames Blue
-            </h1>
-
-            <p className="text-xl text-blue-200 mb-6">
-              Build applications through conversation
-            </p>
-          </div>
-
-          {/* Instructions */}
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 shadow-xl mb-6">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                1
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Describe your idea</h3>
-                <p className="text-blue-200/80 text-sm">Use the chat panel on the left to tell the AI what you want to build</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Watch it build</h3>
-                <p className="text-blue-200/80 text-sm">Your app will appear in this preview as the AI generates the code</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Refine and iterate</h3>
-                <p className="text-blue-200/80 text-sm">Continue the conversation to add features and make changes</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="text-center">
-            <p className="text-sm text-blue-300/60">
-              No coding required • Just describe what you want
-            </p>
+            <button className="rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-semibold px-4 py-2">Hire me</button>
           </div>
         </div>
       </div>
